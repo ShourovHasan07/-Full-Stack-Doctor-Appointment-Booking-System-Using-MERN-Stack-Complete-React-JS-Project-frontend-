@@ -6,6 +6,7 @@ import { AppContext } from "../context/AppContext";
 const Doctor = () => {
   const { speciality } = useParams();
   const [filterDoc, setFilterDoc] = useState([]);
+  const [showFilter,setshowFilter]=useState(false)
   const navigate = useNavigate();
 
   const { doctors } = useContext(AppContext);
@@ -26,7 +27,8 @@ const Doctor = () => {
     <div>
       <p className="text-gray-600">Browse through the doctors specialist.</p>
       <div className="flex flex-col sm:flex-row items-start gap-10 mt-5">
-        <div className="flex  flex-col gap-4 text-sm text-gray-600">
+      <button className={`py-1 px-3 border rounded text-sm  transition sm:hidden ${showFilter ? 'bg-primary text-white':''}`} onClick={()=>setshowFilter(prev =>!prev)}>Filters</button>
+        <div className={`  flex-col gap-4 text-sm text-gray-600 ${showFilter ? 'flex' : ' hidden sm:flex'}`}>
           <p
             onClick={() =>
               speciality === "General physician"
@@ -104,16 +106,16 @@ const Doctor = () => {
             Gastroenterologist
           </p>
         </div>
-        <div className="w h-full grid grid-cols-5 gap-4 gap-y-6 mt-14 ">
+        <div className="w h-full grid grid-cols-5 gap-4 gap-y-6 mt-14  ">
           {filterDoc.map((item, index) => (
             <div
               onClick={() => navigate(`/appointment/${item._id}`)}
-              className="border border-blue-200 rounded-xl overflow-hidden
-                 cursor-pointer hover:-translate-y-2 transition-all duration-500 w-full"
+              className="border border-blue-200 rounded-xl  overflow-hidden
+                 cursor-pointer hover:-translate-y-2  transition-all duration-500 w-full"
               key={index}
             >
               <img
-                className="bg-blue-50 w-full"
+                className="bg-blue-50 w-full hover:bg-primary "
                 src={item.image}
                 alt={item.name}
               />

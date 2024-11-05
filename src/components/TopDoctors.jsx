@@ -20,7 +20,7 @@ const TopDoctors = () => {
             key={index}
 
           >
-            <img className="bg-blue-50 w-full" src={item.image} alt={item.name} />
+            <img className="bg-blue-50 w-full hover:bg-primary" src={item.image} alt={item.name} />
             <div className="p-4">
               <div
                 className="flex items-center gap-2 text-sm text-center
